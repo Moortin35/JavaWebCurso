@@ -14,5 +14,9 @@ public class ControladoraLogica {
     public List<Usuario> traerUsuarios(){
         return controladoraPersis.traerUsuarios();
     }
+
+    public void eliminarUsuario(int idEliminar) {
+        controladoraPersis.eliminarUsuario(idEliminar);
+    }
     
 }
