@@ -1,19 +1,19 @@
 package com.martindelgado.primerservlet.servlets.logica;
 
 public class Usuario {
-    
+
+    private String dni;
     private String nombre;
     private String apellido;
-    private String dni;
     private String telefono;
 
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellido, String dni, String telefono) {
+    public Usuario(String dni, String nombre, String apellido, String telefono) {
+        this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.dni = dni;
         this.telefono = telefono;
     }
 
