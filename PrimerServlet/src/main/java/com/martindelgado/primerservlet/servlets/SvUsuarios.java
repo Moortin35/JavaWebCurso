@@ -1,5 +1,6 @@
 package com.martindelgado.primerservlet.servlets;
 
+import com.martindelgado.primerservlet.servlets.logica.ControladoraLogica;
 import com.martindelgado.primerservlet.servlets.logica.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "SvUsuarios", urlPatterns = {"/SvUsuarios"})
 public class SvUsuarios extends HttpServlet {
+    
+    ControladoraLogica controladoraLog = new ControladoraLogica();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -23,10 +26,7 @@ public class SvUsuarios extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Usuario> listaUsuarios = new ArrayList<>();
-        listaUsuarios.add(new Usuario("1234","luis","luis", "1234"));
-        listaUsuarios.add(new Usuario("4321","luis","rodriguez", "4321"));
-        listaUsuarios.add(new Usuario("1423","lucas","luis", "431"));
-        
+        listaUsuarios = controladoraLog.traerUsuarios();
         HttpSession miSesion = request.getSession();
         miSesion.setAttribute("listaUsuarios", listaUsuarios);
         
@@ -41,11 +41,16 @@ public class SvUsuarios extends HttpServlet {
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
         String telefono = request.getParameter("telefono");
-
-        System.out.println("Dni es" + dni);
-        System.out.println("Nombre es" + nombre);
-        System.out.println("Apellido es" + apellido);
-        System.out.println("Telefono es" + telefono);
+        
+        Usuario usr = new Usuario();
+        usr.setDni(dni);
+        usr.setNombre(nombre);
+        usr.setApellido(apellido);
+        usr.setTelefono(telefono);
+        
+        controladoraLog.crearUsuario(usr);
+        
+        response.sendRedirect("index.jsp");
     }
 
     @Override
