@@ -21,6 +21,13 @@
             <button type="submit"> Mostrar Usuarios </button>
         </form>
         
+        <h1>Editar Usuario</h1>
+        <p>Ingrese la id del usuario que quiere editar</p>
+        <form action="SvEditar" method="GET">
+            <p><label>Id: </label><input type="text" name="id_usuarioEditar"></p>
+            <button type="submit"> Editar Usuario </button> 
+        </form>
+        
         <h1>Eliminar Usuario</h1>
         <p>Ingrese la id del usuario que quiere eliminar</p>
         <form action="SvEliminar" method="POST">
